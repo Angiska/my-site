@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Моя страница — Имя Фамилия</title>
+  <meta name="description" content="Простой одностраничный сайт-визитка." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">Имя Фамилия</h1>
+      <nav class="nav">
+        <a href="#about">Обо мне</a>
+        <a href="#work">Работы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container">
+        <h2>Привет — я начинающий веб‑разработчик</h2>
+        <p>Создаю простые и понятные сайты. Этот шаблон — отличный старт.</p>
+        <a class="btn" href="#contact">Связаться</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h3>Обо мне</h3>
+        <p>Коротко про тебя: чем занимаешься, какие технологии любишь, что ищешь.</p>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="container">
+        <h3>Работы / Проекты</h3>
+        <div class="grid">
+          <article class="card">
+            <h4>Проект 1</h4>
+            <p>Краткое описание проекта.</p>
+          </article>
+          <article class="card">
+            <h4>Проект 2</h4>
+            <p>Краткое описание проекта.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h3>Контакты</h3>
+        <p>Напиши мне, и я отвечу.</p>
+
+        <form action="https://formspree.io/f/your-id" method="POST" class="contact-form">
+          <label>
+            <span>Имя</span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <span>Электронная почта</span>
+            <input type="email" name="_replyto" required />
+          </label>
+          <label>
+            <span>Сообщение</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn">Отправить</button>
+        </form>
+
+        <p class="small">Или напиши: <a href="mailto:you@example.com">you@example.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Имя Фамилия</p>
+    </div>
+  </footer>
+</body>
+</html>
