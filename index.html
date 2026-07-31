@@ -3,84 +3,115 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Моя страница — Имя Фамилия</title>
-  <meta name="description" content="Простой одностраничный сайт-визитка." />
+  <title>Моё портфолио — Visuals</title>
+  <meta name="description" content="Портфолио моих визуалов" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 class="logo">Имя Фамилия</h1>
+    <div class="container header-row">
+      <div class="logo">ТвоёИмя</div>
       <nav class="nav">
+        <a href="#gallery">Галерея</a>
         <a href="#about">Обо мне</a>
-        <a href="#work">Работы</a>
         <a href="#contact">Контакты</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section id="hero" class="hero">
-      <div class="container">
-        <h2>Привет — я начинающий веб‑разработчик</h2>
-        <p>Создаю простые и понятные сайты. Этот шаблон — отличный старт.</p>
-        <a class="btn" href="#contact">Связаться</a>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Мои визуалы</h1>
+      <p class="lead">Качественные визуальные ассеты и арты — превью и загрузка</p>
+      <a class="btn" href="#gallery">Посмотреть галерею</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="gallery" class="section">
+      <h2>Галерея</h2>
+      <p class="muted">Нажми на изображение для просмотра в полном размере.</p>
+
+      <div class="grid gallery-grid">
+        <!-- Повторяй блок .card для каждого визуала, меняй src на images/visual1.jpg, visual2.jpg ... -->
+        <div class="card">
+          <img src="images/visual1.jpg" alt="Visual 1" data-full="images/visual1.jpg">
+          <div class="card-info">
+            <h4>Visual 1</h4>
+            <p class="muted">Краткое описание</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/visual2.jpg" alt="Visual 2" data-full="images/visual2.jpg">
+          <div class="card-info">
+            <h4>Visual 2</h4>
+            <p class="muted">Краткое описание</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/visual3.jpg" alt="Visual 3" data-full="images/visual3.jpg">
+          <div class="card-info">
+            <h4>Visual 3</h4>
+            <p class="muted"> хазе </p>
+          </div>
+        </div>
+
+        <!-- Добавь ещё карточек по необходимости -->
       </div>
     </section>
 
     <section id="about" class="section">
-      <div class="container">
-        <h3>Обо мне</h3>
-        <p>Коротко про тебя: чем занимаешься, какие технологии любишь, что ищешь.</p>
-      </div>
-    </section>
-
-    <section id="work" class="section">
-      <div class="container">
-        <h3>Работы / Проекты</h3>
-        <div class="grid">
-          <article class="card">
-            <h4>Проект 1</h4>
-            <p>Краткое описание проекта.</p>
-          </article>
-          <article class="card">
-            <h4>Проект 2</h4>
-            <p>Краткое описание проекта.</p>
-          </article>
-        </div>
-      </div>
+      <h2>Я клутой 67 малчик</h2>
+      <p>я игаю в майн 67 вот мой ютубчикhttps://www.youtube.com/@klutoifantaimer26.</p>
     </section>
 
     <section id="contact" class="section">
-      <div class="container">
-        <h3>Контакты</h3>
-        <p>Напиши мне, и я отвечу.</p>
-
-        <form action="https://formspree.io/f/your-id" method="POST" class="contact-form">
-          <label>
-            <span>Имя</span>
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            <span>Электронная почта</span>
-            <input type="email" name="_replyto" required />
-          </label>
-          <label>
-            <span>Сообщение</span>
-            <textarea name="message" rows="5" required></textarea>
-          </label>
-          <button type="submit" class="btn">Отправить</button>
-        </form>
-
-        <p class="small">Или напиши: <a href="mailto:you@example.com">you@example.com</a></p>
-      </div>
+      <h2>вам это не надо знать 67 </h2>
+      <p>:mmarcel31052015@gmail.com <a href="mailto:you@example.com">you@example.com</a></p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 Имя Фамилия</p>
-    </div>
+    <div class="container">© 2026 ТвоёИмя — Все права защищены</div>
   </footer>
+
+  <!-- Lightbox modal -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lb-close" aria-label="Close">✕</button>
+    <img class="lb-image" src="" alt="">
+  </div>
+
+  <script>
+    // Простой lightbox
+    document.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('lightbox');
+      const lbImage = lightbox.querySelector('.lb-image');
+      const closeBtn = lightbox.querySelector('.lb-close');
+
+      document.querySelectorAll('.gallery-grid img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+          lbImage.src = img.dataset.full || img.src;
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
+        });
+      });
+
+      const close = () => {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lbImage.src = '';
+      };
+
+      closeBtn.addEventListener('click', close);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    });
+  </script>
 </body>
 </html>
