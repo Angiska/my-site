@@ -3,98 +3,128 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Моё портфолио — Visuals</title>
-  <meta name="description" content="Портфолио моих визуалов" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>Portfolio — Visuals</title>
+  <meta name="description" content="Портфолио визуалов. Контакт в Discord: x_komandos_x" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <!-- tsparticles for subtle particles background -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js" defer></script>
 </head>
 <body>
+  <div id="tsparticles"></div>
+
   <header class="site-header">
     <div class="container header-row">
-      <div class="logo">ТвоёИмя</div>
+      <div class="logo">x_komandos_x</div>
       <nav class="nav">
-        <a href="#gallery">Галерея</a>
-        <a href="#about">Обо мне</a>
-        <a href="#contact">Контакты</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
       </nav>
     </div>
   </header>
 
   <section class="hero">
     <div class="container hero-inner">
-      <h1>Мои визуалы</h1>
-      <p class="lead">Качественные визуальные ассеты и арты — превью и загрузка</p>
-      <a class="btn" href="#gallery">Посмотреть галерею</a>
+      <h1 class="big">Visuals · Portfolio</h1>
+      <p class="lead">Авторские визуальные ассеты — превью и скачивание. Контакт в Discord: <strong>x_komandos_x</strong></p>
+      <div class="hero-cta">
+        <a class="btn" href="#gallery">Посмотреть галерею</a>
+        <button id="copyDiscord" class="btn ghost">Копировать Discord</button>
+      </div>
     </div>
   </section>
 
   <main class="container">
     <section id="gallery" class="section">
       <h2>Галерея</h2>
-      <p class="muted">Нажми на изображение для просмотра в полном размере.</p>
+      <p class="muted">Нажми на карточку — откроется полноразмерное превью. Для скачивания используй кнопку в лайтбоксе.</p>
 
       <div class="grid gallery-grid">
-        <!-- Повторяй блок .card для каждого визуала, меняй src на images/visual1.jpg, visual2.jpg ... -->
-        <div class="card">
-          <img src="images/visual1.jpg" alt="Visual 1" data-full="images/visual1.jpg">
-          <div class="card-info">
+        <!-- Пример карточек: назови файлы images/visual1.jpg, visual2.jpg ... -->
+        <div class="card" data-full="images/visual1.jpg" data-title="Visual 1">
+          <div class="card-media">
+            <img src="images/visual1.jpg" alt="Visual 1" loading="lazy">
+          </div>
+          <div class="card-body">
             <h4>Visual 1</h4>
-            <p class="muted">Краткое описание</p>
           </div>
         </div>
 
-        <div class="card">
-          <img src="images/visual2.jpg" alt="Visual 2" data-full="images/visual2.jpg">
-          <div class="card-info">
+        <div class="card" data-full="images/visual2.jpg" data-title="Visual 2">
+          <div class="card-media">
+            <img src="images/visual2.jpg" alt="Visual 2" loading="lazy">
+          </div>
+          <div class="card-body">
             <h4>Visual 2</h4>
-            <p class="muted">Краткое описание</p>
           </div>
         </div>
 
-        <div class="card">
-          <img src="images/visual3.jpg" alt="Visual 3" data-full="images/visual3.jpg">
-          <div class="card-info">
+        <div class="card" data-full="images/visual3.jpg" data-title="Visual 3">
+          <div class="card-media">
+            <img src="images/visual3.jpg" alt="Visual 3" loading="lazy">
+          </div>
+          <div class="card-body">
             <h4>Visual 3</h4>
-            <p class="muted"> хазе </p>
           </div>
         </div>
 
-        <!-- Добавь ещё карточек по необходимости -->
+        <!-- Добавь дополнительные карточки в том же формате -->
       </div>
     </section>
 
     <section id="about" class="section">
-      <h2>Я клутой 67 малчик</h2>
-      <p>я игаю в майн 67 вот мой ютубчикhttps://www.youtube.com/@klutoifantaimer26.</p>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>вам это не надо знать 67 </h2>
-      <p>:mmarcel31052015@gmail.com <a href="mailto:you@example.com">you@example.com</a></p>
+      <h2>Обо мне</h2>
+      <p>Я создаю визуальные ассеты и арты в тёмном стиле, готов к заказам и коллабам. Контакт для связи: <strong>Discord: x_komandos_x</strong>.</p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">© 2026 ТвоёИмя — Все права защищены</div>
+    <div class="container">© 2026 x_komandos_x — Discord для связи</div>
   </footer>
 
-  <!-- Lightbox modal -->
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" aria-hidden="true">
     <button class="lb-close" aria-label="Close">✕</button>
-    <img class="lb-image" src="" alt="">
+    <div class="lb-inner">
+      <img class="lb-image" src="" alt="">
+      <div class="lb-controls">
+        <a class="btn download" id="downloadBtn" href="#" download>Скачать</a>
+        <span class="lb-title" id="lbTitle"></span>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Простой lightbox
-    document.addEventListener('DOMContentLoaded', () => {
+    // particles init
+    window.addEventListener('load', () => {
+      tsParticles.load('tsparticles', {
+        fpsLimit: 60,
+        interactivity: { events: { onHover: { enable: false }, onClick: { enable: false } } },
+        particles: {
+          number: { value: 40, density: { enable: true, area: 800 } },
+          color: { value: "#9aa3b2" },
+          opacity: { value: 0.06 },
+          size: { value: { min: 1, max: 4 } },
+          move: { enable: true, speed: 0.3, direction: "none", outModes: { default: "out" } }
+        }
+      });
+    });
+
+    // Lightbox logic
+    (function(){
       const lightbox = document.getElementById('lightbox');
       const lbImage = lightbox.querySelector('.lb-image');
+      const lbTitle = document.getElementById('lbTitle');
+      const downloadBtn = document.getElementById('downloadBtn');
       const closeBtn = lightbox.querySelector('.lb-close');
 
-      document.querySelectorAll('.gallery-grid img').forEach(img => {
-        img.style.cursor = 'zoom-in';
-        img.addEventListener('click', () => {
-          lbImage.src = img.dataset.full || img.src;
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+          const src = card.dataset.full || card.querySelector('img').src;
+          const title = card.dataset.title || '';
+          lbImage.src = src;
+          lbTitle.textContent = title;
+          downloadBtn.href = src;
           lightbox.classList.add('open');
           lightbox.setAttribute('aria-hidden', 'false');
         });
@@ -105,13 +135,23 @@
         lightbox.setAttribute('aria-hidden', 'true');
         lbImage.src = '';
       };
-
       closeBtn.addEventListener('click', close);
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) close();
-      });
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-    });
+
+      // copy discord
+      document.getElementById('copyDiscord').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('x_komandos_x');
+          const btn = document.getElementById('copyDiscord');
+          const prev = btn.textContent;
+          btn.textContent = 'Скопировано!';
+          setTimeout(()=> btn.textContent = prev, 1500);
+        } catch(e) {
+          alert('Не удалось скопировать — пожалуйста, скопируй вручную: x_komandos_x');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
